@@ -227,7 +227,7 @@ class EDA:
                     st.warning(f"'{col}' 열이 데이터프레임에 없습니다.")
 
             st.subheader("전처리된 데이터")
-            st.dataframe(df.head())
+            st.dataframe(df.head(7))
 
             st.subheader("요약 통계 (df.describe())")
             st.dataframe(df.describe())
