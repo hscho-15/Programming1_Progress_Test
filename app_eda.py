@@ -349,7 +349,7 @@ class EDA:
                 pop_change = pop_change.sort_values('Change (k)', ascending=False)
 
                 # 📊 그래프 1: 인구 변화량 (천 명 단위)
-                st.subheader("Population Change (k) by Region")
+                st.subheader("지역별 인구 변화 (천 명 단위)")
                 fig1, ax1 = plt.subplots(figsize=(10, 7))
                 sns.barplot(x="Change (k)", y=pop_change.index, data=pop_change, ax=ax1, palette="Blues_d")
                 for i, val in enumerate(pop_change['Change (k)']):
@@ -360,7 +360,7 @@ class EDA:
                 st.pyplot(fig1)
 
                 # 📊 그래프 2: 인구 변화율 (%)
-                st.subheader("Population Growth Rate (%) by Region")
+                st.subheader("지역별 인구 변화율 (%)")
                 pop_change = pop_change.sort_values('Change (%)', ascending=False)
                 fig2, ax2 = plt.subplots(figsize=(10, 7))
                 sns.barplot(x="Change (%)", y=pop_change.index, data=pop_change, ax=ax2, palette="Greens_d")
@@ -372,13 +372,12 @@ class EDA:
                 st.pyplot(fig2)
 
                 # 📘 해설 출력
-                st.markdown("### Interpretation")
+                st.markdown("### 해설")
                 st.markdown("""
-            - The **first chart** shows the **absolute population change** over the last 5 years for each region (in thousands).
-            - The **second chart** displays the **percentage growth rate** over the same period.
-            - Regions with high growth in both absolute and percentage terms may be experiencing population inflow or urban development.
-            - Conversely, regions with negative values may be facing population decline, which can reflect aging, migration, or socioeconomic factors.
-                """)
+                **첫 번째 그래프**는 천 명 단위의 지난 5년 동안 각 지역의 **절대 인구 변화**입니다.
+                **두 번째 그래프**는 같은 기간 동안의 **인구 성장률(%)**입니다.
+                절대적 인구 및 백분율 측면에서 높은 성장률을 보이는 지역들은 인구 유입이나 도시 개발을 하고 있을 것입니다.
+                반대로, 음수 값을 가진 지역은 인구 감소를 겪고 있으며, 고령화, 이주 또는 사회 경제적 요인 때문일 가능성이 큽니다.""")
 
             # 📘 Tab 4: 증감량 분석 테이블
             with tab4:
