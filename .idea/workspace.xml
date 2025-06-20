@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59c4a4bf-cb26-4acd-bf91-3bdf890bbe53" name="변경" comment="Analysis of Difference in Population">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="59c4a4bf-cb26-4acd-bf91-3bdf890bbe53" name="변경" comment="Koreanization of Subheaders">
       <change beforePath="$PROJECT_DIR$/app_eda.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_eda.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +71,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1750397334397</updated>
-      <workItem from="1750397335426" duration="2907000" />
+      <workItem from="1750397335426" duration="2962000" />
     </task>
     <task id="LOCAL-00001" summary="Addition of Original Files">
       <option name="closed" value="true" />
@@ -154,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750399860337</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Koreanization of Subheaders">
+      <option name="closed" value="true" />
+      <created>1750400303358</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1750400303358</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +177,7 @@
     <MESSAGE value="Bug Fix (&quot;행정구역&quot; -&gt; &quot;지역&quot;)" />
     <MESSAGE value="Yearly Total Population Trend Analysis" />
     <MESSAGE value="Analysis of Difference in Population" />
-    <option name="LAST_COMMIT_MESSAGE" value="Analysis of Difference in Population" />
+    <MESSAGE value="Koreanization of Subheaders" />
+    <option name="LAST_COMMIT_MESSAGE" value="Koreanization of Subheaders" />
   </component>
 </project>
