@@ -300,39 +300,85 @@ class EDA:
 
             # 📉 Tab 3: 지역별 최근 5년 인구 변화량/변화율
             with tab3:
-                st.subheader("Regional Change Over Last 5 Years")
-                df_local = df[df['Region'] != 'Total']
-                latest_years = sorted(df_local['연도'].unique())[-5:]
-                df_recent = df_local[df_local['연도'].isin(latest_years)]
+                # 한글 → 영어 지역명 매핑 (예시)
+                region_map = {
+                    '서울': 'Seoul',
+                    '부산': 'Busan',
+                    '대구': 'Daegu',
+                    '인천': 'Incheon',
+                    '광주': 'Gwangju',
+                    '대전': 'Daejeon',
+                    '울산': 'Ulsan',
+                    '세종': 'Sejong',
+                    '경기': 'Gyeonggi',
+                    '강원': 'Gangwon',
+                    '충북': 'Chungbuk',
+                    '충남': 'Chungnam',
+                    '전북': 'Jeonbuk',
+                    '전남': 'Jeonnam',
+                    '경북': 'Gyeongbuk',
+                    '경남': 'Gyeongnam',
+                    '제주': 'Jeju'
+                }
 
-                pop_change = df_recent.groupby(['Region', '연도'])['인구'].sum().unstack()
+                # 전처리
+                df = df.dropna(subset=['인구'])
+
+                # 전국 제외
+                df = df[df['지역'] != '전국']
+
+                # 최근 5년 추출
+                latest_years = sorted(df['연도'].unique())[-5:]
+                df_recent = df[df['연도'].isin(latest_years)]
+
+                # 각 지역별로 최근 5년간 첫 해와 마지막 해 인구 비교
+                pop_change = df_recent.groupby(['지역', '연도'])['인구'].sum().unstack()
+
+                # 첫 해, 마지막 해
                 start_year = latest_years[0]
                 end_year = latest_years[-1]
+
                 pop_change['Change (k)'] = (pop_change[end_year] - pop_change[start_year]) / 1000
                 pop_change['Change (%)'] = ((pop_change[end_year] - pop_change[start_year]) / pop_change[
                     start_year]) * 100
 
-                st.subheader("Change in Population (k)")
-                fig2, ax2 = plt.subplots(figsize=(10, 6))
-                pop_change_sorted = pop_change.sort_values("Change (k)", ascending=False)
-                sns.barplot(x="Change (k)", y=pop_change_sorted.index, data=pop_change_sorted, ax=ax2,
-                            palette="Blues_d")
-                for i, val in enumerate(pop_change_sorted["Change (k)"]):
-                    ax2.text(val + 2, i, f"{val:.1f}", va='center')
-                ax2.set_xlabel("Change (thousands)")
+                # 영어 지역명으로 변환
+                pop_change.index = pop_change.index.map(region_map)
+
+                # 정렬
+                pop_change = pop_change.sort_values('Change (k)', ascending=False)
+
+                # 📊 그래프 1: 인구 변화량 (천 명 단위)
+                st.subheader("Population Change (k) by Region")
+                fig1, ax1 = plt.subplots(figsize=(10, 7))
+                sns.barplot(x="Change (k)", y=pop_change.index, data=pop_change, ax=ax1, palette="Blues_d")
+                for i, val in enumerate(pop_change['Change (k)']):
+                    ax1.text(val + 2, i, f"{val:.1f}", va='center')
+                ax1.set_title("Population Change Over Last 5 Years")
+                ax1.set_xlabel("Change in Population (thousands)")
+                ax1.set_ylabel("Region")
+                st.pyplot(fig1)
+
+                # 📊 그래프 2: 인구 변화율 (%)
+                st.subheader("Population Growth Rate (%) by Region")
+                pop_change = pop_change.sort_values('Change (%)', ascending=False)
+                fig2, ax2 = plt.subplots(figsize=(10, 7))
+                sns.barplot(x="Change (%)", y=pop_change.index, data=pop_change, ax=ax2, palette="Greens_d")
+                for i, val in enumerate(pop_change['Change (%)']):
+                    ax2.text(val + 0.2, i, f"{val:.2f}%", va='center')
+                ax2.set_title("Population Growth Rate Over Last 5 Years")
+                ax2.set_xlabel("Growth Rate (%)")
                 ax2.set_ylabel("Region")
                 st.pyplot(fig2)
 
-                st.subheader("Growth Rate (%)")
-                fig3, ax3 = plt.subplots(figsize=(10, 6))
-                pop_change_sorted = pop_change.sort_values("Change (%)", ascending=False)
-                sns.barplot(x="Change (%)", y=pop_change_sorted.index, data=pop_change_sorted, ax=ax3,
-                            palette="Greens_d")
-                for i, val in enumerate(pop_change_sorted["Change (%)"]):
-                    ax3.text(val + 0.2, i, f"{val:.2f}%", va='center')
-                ax3.set_xlabel("Growth Rate (%)")
-                ax3.set_ylabel("Region")
-                st.pyplot(fig3)
+                # 📘 해설 출력
+                st.markdown("### Interpretation")
+                st.markdown("""
+            - The **first chart** shows the **absolute population change** over the last 5 years for each region (in thousands).
+            - The **second chart** displays the **percentage growth rate** over the same period.
+            - Regions with high growth in both absolute and percentage terms may be experiencing population inflow or urban development.
+            - Conversely, regions with negative values may be facing population decline, which can reflect aging, migration, or socioeconomic factors.
+                """)
 
             # 📘 Tab 4: 증감량 분석 테이블
             with tab4:
