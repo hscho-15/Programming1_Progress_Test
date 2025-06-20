@@ -414,20 +414,56 @@ class EDA:
 
             # 📊 Tab 5: 누적 영역 시각화
             with tab5:
-                st.subheader("Stacked Area Chart by Region")
-                pivot_df = df[df['Region'] != 'Total'].pivot_table(index='Region', columns='연도', values='인구',
-                                                                   aggfunc='sum')
-                pivot_df = pivot_df.sort_index(axis=1)
-                fig5, ax5 = plt.subplots(figsize=(12, 6))
-                pivot_df_T = pivot_df.transpose()
-                pivot_df_T.plot(kind='area', stacked=True, ax=ax5, cmap='tab20')
-                ax5.set_title("Population by Region Over Time")
-                ax5.set_xlabel("Year")
-                ax5.set_ylabel("Population")
-                ax5.legend(title="Region", bbox_to_anchor=(1.05, 1), loc='upper left')
-                ax5.grid(True)
-                st.pyplot(fig5)
+                # 지역명 한글 → 영어 매핑
+                region_map = {
+                    '서울': 'Seoul',
+                    '부산': 'Busan',
+                    '대구': 'Daegu',
+                    '인천': 'Incheon',
+                    '광주': 'Gwangju',
+                    '대전': 'Daejeon',
+                    '울산': 'Ulsan',
+                    '세종': 'Sejong',
+                    '경기': 'Gyeonggi',
+                    '강원': 'Gangwon',
+                    '충북': 'Chungbuk',
+                    '충남': 'Chungnam',
+                    '전북': 'Jeonbuk',
+                    '전남': 'Jeonnam',
+                    '경북': 'Gyeongbuk',
+                    '경남': 'Gyeongnam',
+                    '제주': 'Jeju',
+                    '전국': 'Total'
+                }
 
+                # 한글 지역명을 영어로 매핑
+                df['Region'] = df['지역'].map(region_map)
+                df = df.dropna(subset=['Region'])  # 지역명이 없는 행 제거
+
+                # 피벗 테이블 생성: 지역 = 행, 연도 = 열
+                pivot_df = df.pivot_table(index='Region', columns='연도', values='인구', aggfunc='sum')
+
+                # 연도 기준 정렬
+                pivot_df = pivot_df.sort_index(axis=1)
+
+                st.subheader("Pivot Table (Region vs Year)")
+                st.dataframe(pivot_df)
+
+                # 누적 영역 그래프 그리기
+                st.subheader("지역별 누적 영역 그래프 시각화")
+                fig, ax = plt.subplots(figsize=(12, 6))
+
+                # 색상 자동 선택
+                pivot_df_T = pivot_df.transpose()  # 연도별 행, 지역별 열
+                pivot_df_T.plot(kind='area', stacked=True, ax=ax, cmap='tab20')  # tab20: 20개의 확실한 색상
+
+                ax.set_title("Population by Region Over Time")
+                ax.set_xlabel("Year")
+                ax.set_ylabel("Population")
+                ax.legend(title="Region", bbox_to_anchor=(1.05, 1), loc='upper left')
+                ax.grid(True)
+
+                st.pyplot(fig)
 
 # ---------------------
 # 페이지 객체 생성

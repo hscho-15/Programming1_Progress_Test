@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59c4a4bf-cb26-4acd-bf91-3bdf890bbe53" name="변경" comment="Koreanization of Subheaders">
+    <list default="true" id="59c4a4bf-cb26-4acd-bf91-3bdf890bbe53" name="변경" comment="Deducting Top Difference Region and Year">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app_eda.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_eda.py" afterDir="false" />
     </list>
@@ -72,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1750397334397</updated>
-      <workItem from="1750397335426" duration="3224000" />
+      <workItem from="1750397335426" duration="3422000" />
     </task>
     <task id="LOCAL-00001" summary="Addition of Original Files">
       <option name="closed" value="true" />
@@ -186,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750400405570</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Deducting Top Difference Region and Year">
+      <option name="closed" value="true" />
+      <created>1750400621570</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1750400621570</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,6 +211,7 @@
     <MESSAGE value="Yearly Total Population Trend Analysis" />
     <MESSAGE value="Analysis of Difference in Population" />
     <MESSAGE value="Koreanization of Subheaders" />
-    <option name="LAST_COMMIT_MESSAGE" value="Koreanization of Subheaders" />
+    <MESSAGE value="Deducting Top Difference Region and Year" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deducting Top Difference Region and Year" />
   </component>
 </project>
