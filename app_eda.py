@@ -211,9 +211,10 @@ class EDA:
             '제주': 'Jeju', '전국': 'Total'
         }
 
-        st.title("Population Trends EDA Dashboard")
+        st.title("인구 통계 전처리 및 요약 분석")
 
-        uploaded_file = st.file_uploader("Upload population_trends.csv", type=["csv"])
+        # 파일 업로드
+        uploaded_file = st.file_uploader("CSV 파일을 업로드하세요", type=["csv"])
 
         if uploaded_file is not None:
             df = pd.read_csv(uploaded_file)
@@ -230,13 +231,33 @@ class EDA:
 
             # 📊 Tab 1: 기초 통계
             with tab1:
-                st.subheader("DataFrame Info")
+                st.subheader("원본 데이터")
+                st.dataframe(df.head())
+
+                # ‘세종’ 지역의 행 필터링
+                sejong_mask = df['행정구역'].astype(str).str.contains("세종")
+                df.loc[sejong_mask] = df.loc[sejong_mask].replace("-", "0")
+
+                # ‘인구’, ‘출생아수(명)’, ‘사망자수(명)’ 열을 숫자로 변환
+                cols_to_numeric = ['인구', '출생아수(명)', '사망자수(명)']
+                for col in cols_to_numeric:
+                    if col in df.columns:
+                        df[col] = pd.to_numeric(df[col].astype(str).str.replace(",", ""), errors='coerce')
+                    else:
+                        st.warning(f"'{col}' 열이 데이터프레임에 없습니다.")
+
+                st.subheader("전처리된 데이터")
+                st.dataframe(df.head())
+
+                st.subheader("요약 통계 (df.describe())")
+                st.dataframe(df.describe())
+
+                st.subheader("데이터프레임 구조 (df.info())")
+                # df.info() 결과를 문자열로 받아오기 위해 StringIO 사용
                 buffer = io.StringIO()
                 df.info(buf=buffer)
-                st.text(buffer.getvalue())
-
-                st.subheader("Descriptive Statistics")
-                st.dataframe(df.describe())
+                s = buffer.getvalue()
+                st.text(s)
 
             # 📈 Tab 2: 연도별 추이
             with tab2:
