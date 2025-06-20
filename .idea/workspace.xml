@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59c4a4bf-cb26-4acd-bf91-3bdf890bbe53" name="변경" comment="Initial Data Processing &amp; Analysis Request (After Structure Setting)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="59c4a4bf-cb26-4acd-bf91-3bdf890bbe53" name="변경" comment="Bug Fix (&quot;행정구역&quot; -&gt; &quot;지역&quot;)">
       <change beforePath="$PROJECT_DIR$/app_eda.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_eda.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +71,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1750397334397</updated>
-      <workItem from="1750397335426" duration="2084000" />
+      <workItem from="1750397335426" duration="2259000" />
     </task>
     <task id="LOCAL-00001" summary="Addition of Original Files">
       <option name="closed" value="true" />
@@ -130,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750399436185</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Bug Fix (&quot;행정구역&quot; -&gt; &quot;지역&quot;)">
+      <option name="closed" value="true" />
+      <created>1750399477561</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1750399477561</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,6 +150,7 @@
     <MESSAGE value="Debugging" />
     <MESSAGE value="Structure Setting" />
     <MESSAGE value="Initial Data Processing &amp; Analysis Request (After Structure Setting)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Data Processing &amp; Analysis Request (After Structure Setting)" />
+    <MESSAGE value="Bug Fix (&quot;행정구역&quot; -&gt; &quot;지역&quot;)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug Fix (&quot;행정구역&quot; -&gt; &quot;지역&quot;)" />
   </component>
 </project>

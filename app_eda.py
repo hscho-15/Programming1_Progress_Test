@@ -227,7 +227,7 @@ class EDA:
             df = df.dropna(subset=['Region'])
 
             tab1, tab2, tab3, tab4, tab5 = st.tabs(
-                ["Basic Stats", "Yearly Trends", "Regional Analysis", "Change Analysis", "Visualization"])
+                ["기초 통계", "연도별 추이", "지역별 분석", "변화량 분석", "시각화"])
 
             # 📊 Tab 1: 기초 통계
             with tab1:
@@ -261,15 +261,42 @@ class EDA:
 
             # 📈 Tab 2: 연도별 추이
             with tab2:
-                st.subheader("Yearly Population Trend (Total)")
-                total_df = df[df['Region'] == 'Total'].sort_values('연도')
-                fig1, ax1 = plt.subplots()
-                ax1.plot(total_df['연도'], total_df['인구'], marker='o')
-                ax1.set_title("Nationwide Population Over Time")
-                ax1.set_xlabel("Year")
-                ax1.set_ylabel("Population")
-                ax1.grid(True)
-                st.pyplot(fig1)
+                # 전국 데이터 필터링
+                nationwide_df = df[df['지역'] == '전국'].sort_values('연도')
+
+                # 인구 추이 시각화
+                fig, ax = plt.subplots(figsize=(10, 5))
+                ax.plot(nationwide_df['연도'], nationwide_df['인구'], marker='o', label="Actual")
+
+                # 최근 3년 평균 증가량 = 출생 - 사망
+                recent = nationwide_df.tail(3)
+                recent_births = recent['출생아수(명)'].mean()
+                recent_deaths = recent['사망자수(명)'].mean()
+                annual_growth = recent_births - recent_deaths
+
+                # 가장 최근 연도와 인구
+                last_year = nationwide_df['연도'].iloc[-1]
+                last_pop = nationwide_df['인구'].iloc[-1]
+
+                # 2035년까지 연도 수
+                years_to_project = 2035 - last_year
+
+                # 인구 예측
+                projected_pop = last_pop + years_to_project * annual_growth
+
+                # 그래프에 예측 결과 표시
+                ax.plot(2035, projected_pop, 'ro', label="Projected 2035")
+                ax.axvline(x=2035, linestyle='--', color='red', alpha=0.5)
+                ax.text(2035 + 0.3, projected_pop, f"{int(projected_pop):,}", color='red')
+
+                # 그래프 꾸미기 (영문 라벨만 사용)
+                ax.set_title("Population Trends and 2035 Projection")
+                ax.set_xlabel("Year")
+                ax.set_ylabel("Population")
+                ax.legend()
+                ax.grid(True)
+
+                st.pyplot(fig)
 
             # 📉 Tab 3: 지역별 최근 5년 인구 변화량/변화율
             with tab3:
