@@ -381,28 +381,36 @@ class EDA:
 
             # 📘 Tab 4: 증감량 분석 테이블
             with tab4:
-                st.subheader("Top 100 Largest Population Changes")
-                df_diff = df[df['Region'] != 'Total'].sort_values(['Region', '연도'])
-                df_diff['Change'] = df_diff.groupby('Region')['인구'].diff()
-                df_diff['abs_change'] = df_diff['Change'].abs()
-                top100 = df_diff.sort_values('abs_change', ascending=False).head(100)
+                # 연도별 인구 증감 계산
+                df_sorted = df.sort_values(['지역', '연도'])
+                df_sorted['증감'] = df_sorted.groupby('지역')['인구'].diff()
 
-                display_df = top100[['연도', 'Region', '인구', 'Change']].copy()
-                display_df['인구'] = display_df['인구'].map(lambda x: f"{int(x):,}")
-                display_df['Change'] = display_df['Change'].map(lambda x: f"{int(x):,}" if pd.notnull(x) else "-")
+                # 상위 100개 증감 사례 추출 (절댓값 기준)
+                df_top = df_sorted.copy()
+                df_top['abs_change'] = df_top['증감'].abs()
+                df_top_100 = df_top.sort_values('abs_change', ascending=False).head(100)
 
-                def highlight_change(val):
+                # 천단위 콤마 추가한 포맷용 컬럼들
+                df_top_100_display = df_top_100[['연도', '지역', '인구', '증감']].copy()
+                df_top_100_display['인구'] = df_top_100_display['인구'].map(lambda x: f"{int(x):,}")
+                df_top_100_display['증감'] = df_top_100_display['증감'].map(
+                    lambda x: f"{int(x):,}" if pd.notnull(x) else "-")
+
+                # 색상 스타일 함수 정의 (증감 기준 컬러바)
+                def highlight_diff(val):
                     if val == "-":
                         return ""
-                    val = int(val.replace(",", ""))
-                    if val > 0:
-                        return "background-color: rgba(0, 100, 255, 0.2)"
-                    elif val < 0:
-                        return "background-color: rgba(255, 0, 0, 0.2)"
-                    return ""
+                    try:
+                        val = int(val.replace(",", ""))
+                    except:
+                        return ""
+                    color = f"background-color: rgba({255 if val < 0 else 0}, {0 if val < 0 else 100}, {200 if val > 0 else 0}, 0.3);"
+                    return color
 
-                styled = display_df.style.applymap(highlight_change, subset=['Change'])
-                st.dataframe(styled, use_container_width=True)
+                styled_df = df_top_100_display.style.applymap(highlight_diff, subset=['증감'])
+
+                st.subheader("증감률 상위 100개 지역 및 연도 도출")
+                st.dataframe(styled_df, use_container_width=True)
 
             # 📊 Tab 5: 누적 영역 시각화
             with tab5:
