@@ -446,7 +446,7 @@ class EDA:
                 # 연도 기준 정렬
                 pivot_df = pivot_df.sort_index(axis=1)
 
-                st.subheader("Pivot Table (Region vs Year)")
+                st.subheader("피벗 테이블 (지역 vs 연도)")
                 st.dataframe(pivot_df)
 
                 # 누적 영역 그래프 그리기
