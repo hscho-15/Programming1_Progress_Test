@@ -235,7 +235,7 @@ class EDA:
                 st.dataframe(df.head())
 
                 # ‘세종’ 지역의 행 필터링
-                sejong_mask = df['행정구역'].astype(str).str.contains("세종")
+                sejong_mask = df['지역'].astype(str).str.contains("세종")
                 df.loc[sejong_mask] = df.loc[sejong_mask].replace("-", "0")
 
                 # ‘인구’, ‘출생아수(명)’, ‘사망자수(명)’ 열을 숫자로 변환

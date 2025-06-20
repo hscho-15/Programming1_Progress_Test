@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59c4a4bf-cb26-4acd-bf91-3bdf890bbe53" name="변경" comment="Structure Setting">
+    <list default="true" id="59c4a4bf-cb26-4acd-bf91-3bdf890bbe53" name="변경" comment="Initial Data Processing &amp; Analysis Request (After Structure Setting)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app_eda.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_eda.py" afterDir="false" />
     </list>
@@ -72,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1750397334397</updated>
-      <workItem from="1750397335426" duration="2033000" />
+      <workItem from="1750397335426" duration="2084000" />
     </task>
     <task id="LOCAL-00001" summary="Addition of Original Files">
       <option name="closed" value="true" />
@@ -122,7 +122,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750399255901</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Initial Data Processing &amp; Analysis Request (After Structure Setting)">
+      <option name="closed" value="true" />
+      <created>1750399436185</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1750399436185</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,6 +142,7 @@
     <MESSAGE value="Bug Fix" />
     <MESSAGE value="Debugging" />
     <MESSAGE value="Structure Setting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Structure Setting" />
+    <MESSAGE value="Initial Data Processing &amp; Analysis Request (After Structure Setting)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Data Processing &amp; Analysis Request (After Structure Setting)" />
   </component>
 </project>
