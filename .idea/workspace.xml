@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59c4a4bf-cb26-4acd-bf91-3bdf890bbe53" name="변경" comment="Addition of Original Files">
+    <list default="true" id="59c4a4bf-cb26-4acd-bf91-3bdf890bbe53" name="변경" comment="Initial Data Processing &amp; Analysis Request">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app_eda.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_eda.py" afterDir="false" />
     </list>
@@ -72,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1750397334397</updated>
-      <workItem from="1750397335426" duration="1007000" />
+      <workItem from="1750397335426" duration="1124000" />
     </task>
     <task id="LOCAL-00001" summary="Addition of Original Files">
       <option name="closed" value="true" />
@@ -90,7 +90,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750397611287</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Initial Data Processing &amp; Analysis Request">
+      <option name="closed" value="true" />
+      <created>1750398423520</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1750398423520</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,6 +106,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Addition of Original Files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Addition of Original Files" />
+    <MESSAGE value="Initial Data Processing &amp; Analysis Request" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Data Processing &amp; Analysis Request" />
   </component>
 </project>
